@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.naez.colivingapp.R
 import com.naez.colivingapp.databinding.FragmentSpaceBinding
 import com.naez.colivingapp.ui.common.PermissionRequester
@@ -47,24 +48,23 @@ class SpaceFragment : Fragment() {
                 PermissionRequester(it, Manifest.permission.ACCESS_COARSE_LOCATION)
         }
 
-
         adapter = SpaceAdapter(mainViewModel::onSpaceClicked)
         recycler.adapter = adapter
         mainViewModel.model.observe(this, Observer(::updateUi))
+        mainViewModel.navigation.observe(this, Observer { event ->
+            event.getContentIfNotHandled()?.let {
+                val bundle = Bundle().apply { putInt(SPACE, it.id) }
+                findNavController().navigate(R.id.action_spaceFragment_to_spaceDetailFragment, bundle)
+            }
+        })
     }
 
     private fun updateUi(model: MainViewModel.UiModel) {
-
         progress.visibility =
             if (model is MainViewModel.UiModel.Loading) View.VISIBLE else View.GONE
 
         when (model) {
             is MainViewModel.UiModel.Content -> adapter.spaces = model.spaces
-            is MainViewModel.UiModel.Navigation -> {
-                val bundle = Bundle().apply { putInt(SPACE, model.space.id) }
-                view?.findNavController()
-                    ?.navigate(R.id.action_spaceFragment_to_spaceDetailFragment, bundle)
-            }
             MainViewModel.UiModel.RequestLocationPermission -> coarsePermissionRequester.request {
                 mainViewModel.onCoarsePermissionRequested()
             }

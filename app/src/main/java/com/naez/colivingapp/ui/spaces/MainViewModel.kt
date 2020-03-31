@@ -2,6 +2,7 @@ package com.naez.colivingapp.ui.spaces
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.naez.colivingapp.ui.common.Event
 import com.naez.colivingapp.ui.common.ScopedViewModel
 import com.naez.data.ResultData
 import com.naez.domain.Space
@@ -21,10 +22,12 @@ class MainViewModel(
             return _model
         }
 
+    private val _navigation = MutableLiveData<Event<Space>>()
+    val navigation: LiveData<Event<Space>> = _navigation
+
     sealed class UiModel {
         object Loading : UiModel()
         data class Content(val spaces: List<Space>) : UiModel()
-        data class Navigation(val space: Space) : UiModel()
         object RequestLocationPermission : UiModel()
     }
 
@@ -52,7 +55,7 @@ class MainViewModel(
     }
 
     fun onSpaceClicked(space: Space) {
-        _model.value = UiModel.Navigation(space)
+        _navigation.value = Event(space)
     }
 
     override fun onCleared() {
