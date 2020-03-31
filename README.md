@@ -1,4 +1,4 @@
-# colivingapp
+# Co-living App
 
 Is a platform to manage coliving buildings
 
