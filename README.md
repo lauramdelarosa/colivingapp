@@ -2,8 +2,6 @@
 
 Is a platform to manage coliving buildings
 
-These are the native mobile apps for Android and iOS used in Mexico for QR Payments. The business logic is written using Koltin Multiplatform to share a module between both apps, the UI/View for Android is written in Kotlin and for iOS in Swift
-
 ## Platforms
 
 **Android** 
@@ -33,20 +31,20 @@ From Android Studio:
 
 ## Structure
 
-*** application module ***
+***application module***
 - Android specific stuff
     - Handles all user interface requirements, all snippet classes subscribe to events that viewModel can react to.
     - To build the UI, the pattern of "Single Activity" per flow and Fragment per screen is followed.
 - The JetPack navigation controller is used to handle navigation in the application.
         
-*** data module ***
+***data module***
 - API calls assigned using the Retrofit client (https://square.github.io/retrofit/) in the repositories
 - Manage Datasource classes.
 
-*** domain module ***
+***domain module***
 - Mainly data classes that represent the data types in the application.
 
-*** use case module ***
+***use case module***
 - Use cases are pure Kotlin classes that represent a unit of business logic (also known as interactors). To run use cases on a different thread, we are using Coroutines and the results are modeled based on the ResultData sealed class.
 - The ResultData type represents values ​​with two possibilities: a value that is successful or an error;  
 
@@ -59,6 +57,7 @@ There are strong boundaries between layers and the inners ones shouldn't know an
 - Dependencies
 The most important dependencies are:
     * Androidx and Google Android Material
+    * (https://github.com/bumptech/glide) for images handler
     * (https://github.com/Karumi/Dexter) for permission
     * (https://github.com/intuit/sdp) for dimensions
     
