@@ -39,7 +39,7 @@ From Android Studio:
 - Mainly data classes that represent the data types in the application.
 
 ***Data module***
-- API calls assigned using the Retrofit client (https://square.github.io/retrofit/) in the repositories
+- API calls assigned using the Retrofit client (https://square.github.io/retrofit/) in the repositories using coroutines
 - Manage Datasource classes.
 
 ***Use case module***
