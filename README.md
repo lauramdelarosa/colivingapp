@@ -15,8 +15,7 @@ Clone this repository and import into selected platform
 git clone https://github.com/lauramdelarosa/colivingapp.git
 ```
 
-## Generating signed APK FOR ANDROID
-
+## Generating signed apk for Android
 From Android Studio:
 1. ***Build*** menu
 2. ***Generate Signed APK...***
@@ -35,7 +34,7 @@ From Android Studio:
 - Android specific stuff
     - Handles all user interface requirements, all snippet classes subscribe to events that viewModel can react to.
     - To build the UI, the pattern of "Single Activity" per flow and Fragment per screen is followed.
-- The JetPack navigation controller is used to handle navigation in the application.
+    - The JetPack navigation controller is used to handle navigation in the application.
         
 ***data module***
 - API calls assigned using the Retrofit client (https://square.github.io/retrofit/) in the repositories
