@@ -30,19 +30,19 @@ From Android Studio:
 
 ## Structure
 
-***application module***
+***Application module***
 - Handles all user interface requirements, all snippet classes subscribe to events that viewModel can react to.
 - To build the UI, the pattern of "Single Activity" per flow and Fragment per screen is followed.
 - The JetPack navigation controller is used to handle navigation in the application.
 
-***domain module***
+***Domain module***
 - Mainly data classes that represent the data types in the application.
 
-***data module***
+***Data module***
 - API calls assigned using the Retrofit client (https://square.github.io/retrofit/) in the repositories
 - Manage Datasource classes.
 
-***use case module***
+***Use case module***
 - Use cases are pure Kotlin classes that represent a unit of business logic (also known as interactors). To run use cases on a different thread, we are using Coroutines and the results are modeled based on the ResultData sealed class.
 - The ResultData type represents values ​​with two possibilities: a value that is successful or an error;  
 
