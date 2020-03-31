@@ -1,0 +1,7 @@
+<resources>
+    <string translatable="false" name="app_name">Co-living App</string>
+    <string translatable="false" name="api_key">12345798</string>
+    <string translatable="false" name="base_url">https://naezcoliving.herokuapp.com/api/v1/</string>
+
+    <string name="book">Book</string>
+</resources>

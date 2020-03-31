@@ -1,0 +1,6 @@
+rootProject.name='colivingapp'
+include ':app'
+include ':data'
+include ':domain'
+include ':testShared'
+include ':usecases'

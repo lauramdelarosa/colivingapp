@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Text -->
+    <dimen name="text_tiny">@dimen/_8sdp</dimen>
+    <dimen name="text_small">@dimen/_12sdp</dimen>
+    <dimen name="text_base">@dimen/_14sdp</dimen>
+    <dimen name="text_medium_big">@dimen/_16sdp</dimen>
+    <dimen name="text_big">@dimen/_18sdp</dimen>
+    <dimen name="text_big_dialog">@dimen/_20sdp</dimen>
+    <dimen name="text_bigger">@dimen/_24sdp</dimen>
+    <dimen name="text_biggest">@dimen/_58sdp</dimen>
+
+</resources>
