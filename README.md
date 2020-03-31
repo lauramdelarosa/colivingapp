@@ -31,10 +31,9 @@ From Android Studio:
 ## Structure
 
 ***application module***
-- Android specific stuff
-    - Handles all user interface requirements, all snippet classes subscribe to events that viewModel can react to.
-    - To build the UI, the pattern of "Single Activity" per flow and Fragment per screen is followed.
-    - The JetPack navigation controller is used to handle navigation in the application.
+- Handles all user interface requirements, all snippet classes subscribe to events that viewModel can react to.
+- To build the UI, the pattern of "Single Activity" per flow and Fragment per screen is followed.
+- The JetPack navigation controller is used to handle navigation in the application.
         
 ***data module***
 - API calls assigned using the Retrofit client (https://square.github.io/retrofit/) in the repositories
