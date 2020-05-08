@@ -10,7 +10,7 @@ import com.naez.usecases.GetSpaces
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
-class MainViewModel(
+class SpaceViewModel(
     private val getSpaces: GetSpaces,
     uiDispatcher: CoroutineDispatcher
 ) : ScopedViewModel(uiDispatcher) {
@@ -24,33 +24,41 @@ class MainViewModel(
 
     private val _navigation = MutableLiveData<Event<Space>>()
     val navigation: LiveData<Event<Space>> = _navigation
+    val loadingProgressBar: MutableLiveData<Boolean> = MutableLiveData()
+    val visibilityErrorText: MutableLiveData<Boolean> = MutableLiveData()
+    val visibilityRecyclerview: MutableLiveData<Boolean> = MutableLiveData()
 
     sealed class UiModel {
-        object Loading : UiModel()
         data class Content(val spaces: List<Space>) : UiModel()
         object RequestLocationPermission : UiModel()
     }
 
     init {
         initScope()
+        visibilityRecyclerview.value = true
     }
 
     private fun refresh() {
         _model.value = UiModel.RequestLocationPermission
     }
 
-    fun onCoarsePermissionRequested() {
-        launch {
-            _model.value = UiModel.Loading
-
-            when (val result = getSpaces.invoke()) {
-                is ResultData.Success -> {
-                    _model.value = UiModel.Content(result.data)
+    fun onCoarsePermissionRequested(request: Boolean) {
+        if (request)
+            launch {
+                loadingProgressBar.value = true
+                when (val result = getSpaces.invoke()) {
+                    is ResultData.Success -> {
+                        _model.value = UiModel.Content(result.data)
+                    }
+                    is ResultData.Error -> {
+                        result.exception.toString()
+                    }
                 }
-                is ResultData.Error -> {
-                    result.exception.toString()
-                }
+                loadingProgressBar.value = false
             }
+        else {
+            visibilityErrorText.value=true
+            visibilityRecyclerview.value = false
         }
     }
 

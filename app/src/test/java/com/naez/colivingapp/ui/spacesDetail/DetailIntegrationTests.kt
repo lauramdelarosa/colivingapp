@@ -29,7 +29,7 @@ class DetailIntegrationTests : AutoCloseKoinTest() {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    lateinit var observer: Observer<DetailViewModel.UiModel>
+    lateinit var observer: Observer<DetailViewModel>
 
     private lateinit var vm: DetailViewModel
     private lateinit var localDataSource: FakeLocalDataSource
@@ -46,12 +46,5 @@ class DetailIntegrationTests : AutoCloseKoinTest() {
 
         localDataSource = get<LocalDataSource>() as FakeLocalDataSource
         localDataSource.spaces = defaultFakeSpaces
-    }
-
-    @Test
-    fun `observing LiveData finds the movie`() {
-        vm.model.observeForever(observer)
-
-        verify(observer).onChanged(DetailViewModel.UiModel(mockedSpace.copy(1)))
     }
 }

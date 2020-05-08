@@ -54,3 +54,10 @@ fun FloatingActionButton.setFavorite(favorite: Boolean?) {
     val icon = if (favorite == true) R.drawable.ic_favorite_on else R.drawable.ic_favorite_off
     setImageDrawable(context.getDrawable(icon))
 }
+
+@BindingAdapter("visible")
+fun View.setVisible(visible: Boolean?) {
+    visibility = visible?.let {
+        if (visible) View.VISIBLE else View.GONE
+    } ?: View.GONE
+}
