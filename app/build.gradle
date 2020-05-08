@@ -33,7 +33,6 @@ android {
     dataBinding {
         enabled = true
     }
-
 }
 
 androidExtensions {

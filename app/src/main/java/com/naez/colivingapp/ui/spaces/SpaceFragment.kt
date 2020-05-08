@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.naez.colivingapp.R
 import com.naez.colivingapp.databinding.FragmentSpaceBinding
@@ -29,7 +28,6 @@ class SpaceFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         dataBindingView = FragmentSpaceBinding.inflate(inflater, container, false).apply {
             viewModel = mainViewModel
         }
@@ -48,13 +46,23 @@ class SpaceFragment : Fragment() {
                 PermissionRequester(it, Manifest.permission.ACCESS_COARSE_LOCATION)
         }
 
+        coarsePermissionRequester.request {
+            if (it) {
+                //hacer lo que necesites con el permiso
+            } else {
+                //permiso denegado
+            }
+        }
         adapter = SpaceAdapter(mainViewModel::onSpaceClicked)
         recycler.adapter = adapter
         mainViewModel.model.observe(this, Observer(::updateUi))
         mainViewModel.navigation.observe(this, Observer { event ->
             event.getContentIfNotHandled()?.let {
                 val bundle = Bundle().apply { putInt(SPACE, it.id) }
-                findNavController().navigate(R.id.action_spaceFragment_to_spaceDetailFragment, bundle)
+                findNavController().navigate(
+                    R.id.action_spaceFragment_to_spaceDetailFragment,
+                    bundle
+                )
             }
         })
     }

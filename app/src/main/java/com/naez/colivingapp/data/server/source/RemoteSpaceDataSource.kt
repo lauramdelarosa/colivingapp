@@ -13,7 +13,7 @@ import kotlinx.coroutines.withContext
 
 class RemoteSpaceDataSource(private val spaceService: SpaceService) : RemoteDataSource {
 
-    override suspend fun getcolivingList(): ResultData<List<Space>> = withContext(Dispatchers.IO) {
+    override suspend fun getColivingList(): ResultData<List<Space>> = withContext(Dispatchers.IO) {
         safeApiCall(
             call = {
                 renderData(

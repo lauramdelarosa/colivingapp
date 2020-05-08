@@ -40,7 +40,6 @@ class SpaceRepositoryTest {
 
             when (val result = spaceRepository.getSpaces()) {
                 is ResultData.Success -> assertEquals(localSpace, result.data)
-
             }
         }
     }
@@ -51,7 +50,7 @@ class SpaceRepositoryTest {
 
             val remoteSpace = listOf(mockedSpace.copy(2))
             whenever(localDataSource.isEmpty()).thenReturn(true)
-            whenever(remoteDataSource.getcolivingList()).thenReturn(ResultData.Success(remoteSpace))
+            whenever(remoteDataSource.getColivingList()).thenReturn(ResultData.Success(remoteSpace))
             whenever(localDataSource.getSpaces()).thenReturn(remoteSpace)
 
             when (spaceRepository.getSpaces()) {

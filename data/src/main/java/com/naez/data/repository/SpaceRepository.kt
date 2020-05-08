@@ -12,7 +12,7 @@ class SpaceRepository(
 
     suspend fun getSpaces(): ResultData<List<Space>> {
         if (localDataSource.isEmpty()) {
-            when (val result = remoteDataSource.getcolivingList()) {
+            when (val result = remoteDataSource.getColivingList()) {
                 is ResultData.Success -> localDataSource.saveSpaces(result.data)
                 is ResultData.Error -> return result
             }

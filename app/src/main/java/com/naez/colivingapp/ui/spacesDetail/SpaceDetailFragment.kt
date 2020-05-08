@@ -16,7 +16,7 @@ import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class SpaceDetailFragment : Fragment() {
+class SpaceDetailFragment  : Fragment() {
 
     private val detailViewModel: DetailViewModel by currentScope.viewModel(this) {
         parametersOf(arguments?.getInt(SPACE, -1))

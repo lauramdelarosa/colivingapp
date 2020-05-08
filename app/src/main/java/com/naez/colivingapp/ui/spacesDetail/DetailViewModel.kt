@@ -2,8 +2,10 @@ package com.naez.colivingapp.ui.spacesDetail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.naez.domain.Space
 import com.naez.colivingapp.ui.common.ScopedViewModel
+import com.naez.colivingapp.utils.Money
+import com.naez.colivingapp.utils.currencyFormat
+import com.naez.domain.Space
 import com.naez.usecases.FindSpaceById
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
