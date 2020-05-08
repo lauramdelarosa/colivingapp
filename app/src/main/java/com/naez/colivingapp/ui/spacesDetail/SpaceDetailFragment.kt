@@ -5,14 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import com.naez.colivingapp.R
 import com.naez.colivingapp.databinding.FragmentDetailBinding
 import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class SpaceDetailFragment  : Fragment() {
+class SpaceDetailFragment : Fragment() {
 
     private val detailViewModel: DetailViewModel by currentScope.viewModel(this) {
         parametersOf(arguments?.getInt(SPACE, -1))
@@ -23,7 +21,6 @@ class SpaceDetailFragment  : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         dataBindingView = FragmentDetailBinding.inflate(inflater, container, false).apply {
             viewModel = detailViewModel
         }

@@ -18,6 +18,8 @@ class DetailViewModel(
     val descriptionText: MutableLiveData<String> = MutableLiveData()
     val typeRoomText: MutableLiveData<String> = MutableLiveData()
     val priceText: MutableLiveData<String> = MutableLiveData()
+    val url: MutableLiveData<String> = MutableLiveData()
+    val favoriteBoolean: MutableLiveData<Boolean> = MutableLiveData()
 
     init {
         findSpace()
@@ -30,6 +32,8 @@ class DetailViewModel(
             descriptionText.value = description
             typeRoomText.value = "$typeLivingPlace - $roomsNumber Rooms available"
             priceText.value = Money.format(amount, amountCurrency).currencyFormat()
+            favoriteBoolean.value = favorite
+            url.value = image
         }
     }
 
