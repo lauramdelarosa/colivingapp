@@ -26,8 +26,7 @@ class DetailViewModel(
     }
 
     private fun findSpace() = launch {
-        val space = findSpaceById.invoke(spaceId)
-        with(space) {
+        with(findSpaceById.invoke(spaceId)) {
             titleText.value = title
             descriptionText.value = description
             typeRoomText.value = "$typeLivingPlace - $roomsNumber Rooms available"
