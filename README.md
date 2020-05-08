@@ -22,8 +22,8 @@ From Android Studio:
 
 ## Versions
 
- Kotlin 1.3.71  
- Android Studio 3.6.1  
+ Kotlin 1.3.72
+ Android Studio 3.6.3
  Gradle 5.6.4-all (Wrapper)  
  **Android Minimal API:** 21  
  **Android Target API:** 29  
