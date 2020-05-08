@@ -1,9 +1,9 @@
 package com.naez.colivingapp.ui.spacesDetail
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.naez.domain.Space
 import com.naez.colivingapp.ui.common.ScopedViewModel
+import com.naez.colivingapp.utils.Money
+import com.naez.colivingapp.utils.currencyFormat
 import com.naez.usecases.FindSpaceById
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
@@ -12,25 +12,30 @@ class DetailViewModel(
     private val spaceId: Int,
     private val findSpaceById: FindSpaceById,
     override val uiDispatcher: CoroutineDispatcher
-) :
-    ScopedViewModel(uiDispatcher) {
+) : ScopedViewModel(uiDispatcher) {
 
-    data class UiModel(val space: Space)
+    val titleText: MutableLiveData<String> = MutableLiveData()
+    val descriptionText: MutableLiveData<String> = MutableLiveData()
+    val typeRoomText: MutableLiveData<String> = MutableLiveData()
+    val priceText: MutableLiveData<String> = MutableLiveData()
+    val url: MutableLiveData<String> = MutableLiveData()
+    val favoriteBoolean: MutableLiveData<Boolean> = MutableLiveData()
 
-    private val _model = MutableLiveData<UiModel>()
-    val model: LiveData<UiModel>
-        get() {
-            if (_model.value == null) findSpace()
-            return _model
-        }
+    init {
+        findSpace()
+    }
 
     private fun findSpace() = launch {
-        _model.value = UiModel(findSpaceById.invoke(spaceId))
-    }
-
-    fun onFavoriteClicked() = launch {
-        _model.value?.space?.let {
-
+        val space = findSpaceById.invoke(spaceId)
+        with(space) {
+            titleText.value = title
+            descriptionText.value = description
+            typeRoomText.value = "$typeLivingPlace - $roomsNumber Rooms available"
+            priceText.value = Money.format(amount, amountCurrency).currencyFormat()
+            favoriteBoolean.value = favorite
+            url.value = image
         }
     }
+
+    fun onFavoriteClicked() {}
 }

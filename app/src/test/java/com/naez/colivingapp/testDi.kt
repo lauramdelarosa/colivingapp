@@ -58,7 +58,7 @@ class FakeRemoteDataSource : RemoteDataSource {
 
     var spaces = defaultFakeSpaces
 
-    override suspend fun getcolivingList(): ResultData<List<Space>> =ResultData.Success(spaces)
+    override suspend fun getColivingList(): ResultData<List<Space>> =ResultData.Success(spaces)
 }
 
 class FakeLocationDataSource : LocationDataSource {
