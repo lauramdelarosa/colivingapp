@@ -4,4 +4,5 @@
     <string translatable="false" name="base_url">https://naezcoliving.herokuapp.com/api/v1/</string>
 
     <string name="book">Book</string>
+    <string name="obligatory_permission">Obligatory Permission</string>
 </resources>

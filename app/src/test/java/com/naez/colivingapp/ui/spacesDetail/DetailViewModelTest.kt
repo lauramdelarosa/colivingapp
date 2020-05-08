@@ -26,7 +26,7 @@ class DetailViewModelTest {
 
 
     @Mock
-    lateinit var observer: Observer<DetailViewModel.UiModel>
+    lateinit var observer: Observer<DetailViewModel>
 
     private lateinit var vm: DetailViewModel
 
@@ -35,16 +35,5 @@ class DetailViewModelTest {
         vm = DetailViewModel(1, findSpaceById, Dispatchers.Unconfined)
     }
 
-    @Test
-    fun `observing LiveData finds the movie`() {
 
-        runBlocking {
-            val movie = mockedSpace.copy(id = 1)
-            whenever(findSpaceById.invoke(1)).thenReturn(movie)
-
-            vm.model.observeForever(observer)
-
-            verify(observer).onChanged(DetailViewModel.UiModel(movie))
-        }
-    }
 }

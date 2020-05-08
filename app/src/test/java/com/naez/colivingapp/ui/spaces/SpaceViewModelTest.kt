@@ -2,7 +2,7 @@ package com.naez.colivingapp.ui.spaces
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.naez.colivingapp.ui.spaces.MainViewModel.UiModel
+import com.naez.colivingapp.ui.spaces.SpaceViewModel.UiModel
 import com.naez.data.ResultData
 import com.naez.testshared.mockedSpace
 import com.naez.usecases.GetSpaces
@@ -18,7 +18,7 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class MainViewModelTest {
+class SpaceViewModelTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
@@ -29,11 +29,11 @@ class MainViewModelTest {
     @Mock
     lateinit var observer: Observer<UiModel>
 
-    private lateinit var vm: MainViewModel
+    private lateinit var vm: SpaceViewModel
 
     @Before
     fun setUp() {
-        vm = MainViewModel(getSpaces, Dispatchers.Unconfined)
+        vm = SpaceViewModel(getSpaces, Dispatchers.Unconfined)
     }
 
     @Test
@@ -45,19 +45,6 @@ class MainViewModelTest {
     }
 
     @Test
-    fun `after requesting the permission, loading is shown`() {
-        runBlocking {
-
-            val spaces = listOf(mockedSpace.copy(id = 1))
-            whenever(getSpaces.invoke()).thenReturn(ResultData.Success(spaces))
-            vm.model.observeForever(observer)
-
-            vm.onCoarsePermissionRequested()
-            verify(observer).onChanged(UiModel.Loading)
-        }
-    }
-
-    @Test
     fun `after requesting the permission, getSpaces is called`() {
 
         runBlocking {
@@ -66,7 +53,7 @@ class MainViewModelTest {
 
             vm.model.observeForever(observer)
 
-            vm.onCoarsePermissionRequested()
+            vm.onCoarsePermissionRequested(true)
 
             verify(observer).onChanged(UiModel.Content(spaces))
         }

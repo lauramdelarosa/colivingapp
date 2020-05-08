@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.naez.colivingapp.ui.spaces.MainViewModel" />
+            type="com.naez.colivingapp.ui.spaces.SpaceViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,6 +14,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
+        app:visible="@{viewModel.visibilityRecyclerview}"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -31,7 +32,20 @@
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
         android:layout_marginBottom="@dimen/_8sdp"
+        app:visible="@{viewModel.loadingProgressBar}"
         app:layout_constraintBottom_toBottomOf="@+id/recycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        style="@style/AppTheme.TextAppearanceBold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:text="@string/obligatory_permission"
+        app:visible="@{viewModel.visibilityErrorText}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

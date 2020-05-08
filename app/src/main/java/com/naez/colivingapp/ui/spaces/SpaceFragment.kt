@@ -21,7 +21,7 @@ class SpaceFragment : Fragment() {
     private lateinit var adapter: SpaceAdapter
     private lateinit var coarsePermissionRequester: PermissionRequester
 
-    private val mainViewModel: MainViewModel by currentScope.viewModel(this)
+    private val spaceViewModel: SpaceViewModel by currentScope.viewModel(this)
     private lateinit var dataBindingView: FragmentSpaceBinding
 
     override fun onCreateView(
@@ -29,7 +29,7 @@ class SpaceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         dataBindingView = FragmentSpaceBinding.inflate(inflater, container, false).apply {
-            viewModel = mainViewModel
+            viewModel = spaceViewModel
         }
         return dataBindingView.root
     }
@@ -45,18 +45,10 @@ class SpaceFragment : Fragment() {
             coarsePermissionRequester =
                 PermissionRequester(it, Manifest.permission.ACCESS_COARSE_LOCATION)
         }
-
-        coarsePermissionRequester.request {
-            if (it) {
-                //hacer lo que necesites con el permiso
-            } else {
-                //permiso denegado
-            }
-        }
-        adapter = SpaceAdapter(mainViewModel::onSpaceClicked)
+        adapter = SpaceAdapter(spaceViewModel::onSpaceClicked)
         recycler.adapter = adapter
-        mainViewModel.model.observe(this, Observer(::updateUi))
-        mainViewModel.navigation.observe(this, Observer { event ->
+        spaceViewModel.model.observe(this, Observer(::updateUi))
+        spaceViewModel.navigation.observe(this, Observer { event ->
             event.getContentIfNotHandled()?.let {
                 val bundle = Bundle().apply { putInt(SPACE, it.id) }
                 findNavController().navigate(
@@ -67,14 +59,11 @@ class SpaceFragment : Fragment() {
         })
     }
 
-    private fun updateUi(model: MainViewModel.UiModel) {
-        progress.visibility =
-            if (model is MainViewModel.UiModel.Loading) View.VISIBLE else View.GONE
-
+    private fun updateUi(model: SpaceViewModel.UiModel) {
         when (model) {
-            is MainViewModel.UiModel.Content -> adapter.spaces = model.spaces
-            MainViewModel.UiModel.RequestLocationPermission -> coarsePermissionRequester.request {
-                mainViewModel.onCoarsePermissionRequested()
+            is SpaceViewModel.UiModel.Content -> adapter.spaces = model.spaces
+            SpaceViewModel.UiModel.RequestLocationPermission -> coarsePermissionRequester.request {
+                spaceViewModel.onCoarsePermissionRequested(it)
             }
         }
     }

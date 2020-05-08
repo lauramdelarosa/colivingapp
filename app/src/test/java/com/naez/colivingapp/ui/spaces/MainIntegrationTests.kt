@@ -26,14 +26,14 @@ class MainIntegrationTests : AutoCloseKoinTest() {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    lateinit var observer: Observer<MainViewModel.UiModel>
+    lateinit var observer: Observer<SpaceViewModel.UiModel>
 
-    private lateinit var vm: MainViewModel
+    private lateinit var vm: SpaceViewModel
 
     @Before
     fun setUp() {
         val vmModule = module {
-            factory { MainViewModel(get(), get()) }
+            factory { SpaceViewModel(get(), get()) }
             factory { GetSpaces(get()) }
         }
 
@@ -45,9 +45,9 @@ class MainIntegrationTests : AutoCloseKoinTest() {
     fun `data is loaded from server when local source is empty`() {
         vm.model.observeForever(observer)
 
-        vm.onCoarsePermissionRequested()
+        vm.onCoarsePermissionRequested(true)
 
-        verify(observer).onChanged(MainViewModel.UiModel.Content(defaultFakeSpaces))
+        verify(observer).onChanged(SpaceViewModel.UiModel.Content(defaultFakeSpaces))
     }
 
     @Test
@@ -57,8 +57,8 @@ class MainIntegrationTests : AutoCloseKoinTest() {
         localDataSource.spaces = fakeLocalMovies
         vm.model.observeForever(observer)
 
-        vm.onCoarsePermissionRequested()
+        vm.onCoarsePermissionRequested(true)
 
-        verify(observer).onChanged(MainViewModel.UiModel.Content(fakeLocalMovies))
+        verify(observer).onChanged(SpaceViewModel.UiModel.Content(fakeLocalMovies))
     }
 }

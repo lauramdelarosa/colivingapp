@@ -9,7 +9,7 @@ import com.naez.colivingapp.data.server.RetrofitBuild
 import com.naez.colivingapp.data.server.endpoints.SpaceService
 import com.naez.colivingapp.data.server.source.RemoteSpaceDataSource
 import com.naez.colivingapp.ui.spacesDetail.DetailViewModel
-import com.naez.colivingapp.ui.spaces.MainViewModel
+import com.naez.colivingapp.ui.spaces.SpaceViewModel
 import com.naez.colivingapp.ui.spaces.SpaceFragment
 import com.naez.colivingapp.ui.spacesDetail.SpaceDetailFragment
 import com.naez.colivingapp.utils.AndroidPermissionChecker
@@ -40,7 +40,7 @@ fun Application.initDI() {
 
 private val presentationModule = module {
     scope(named<SpaceFragment>()) {
-        viewModel { MainViewModel(getSpaces = get(), uiDispatcher = get()) }
+        viewModel { SpaceViewModel(getSpaces = get(), uiDispatcher = get()) }
         scoped { GetSpaces(spaceRepository = get()) }
     }
 
