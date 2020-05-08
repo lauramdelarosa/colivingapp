@@ -2,7 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
         <variable
             name="viewModel"
@@ -41,6 +40,7 @@
                     style="@style/AppTheme.TextAppearance"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
+                    android:text="@={viewModel.titleText}"
                     tools:title="Space name" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -67,6 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:padding="@dimen/_16sdp"
+                    android:text="@={viewModel.descriptionText}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorDarkGray"
                     tools:text="Description" />
@@ -79,6 +80,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:gravity="center"
                     android:padding="@dimen/_5sdp"
+                    android:text="@={viewModel.typeRoomText}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorDarkGray"
                     tools:text="Type - 5 Rooms" />
@@ -100,6 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
+                android:text="@={viewModel.priceText}"
                 android:textColor="@color/colorDarkGray"
                 android:textSize="@dimen/text_big"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -132,6 +135,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
+            android:onClick="@{()-> viewModel.onFavoriteClicked()}"
             android:src="@drawable/ic_favorite_off"
             app:layout_anchor="@id/appBarLayout"
             app:layout_anchorGravity="bottom|end" />
