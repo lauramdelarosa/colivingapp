@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.naez.colivingapp.ui.spacesDetail.DetailViewModel" />
@@ -20,7 +21,6 @@
             android:fitsSystemWindows="true"
             android:theme="@style/AppTheme.DarkOverlay">
 
-
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_180sdp"
@@ -34,13 +34,15 @@
                     android:fitsSystemWindows="true"
                     android:foreground="?attr/selectableItemBackground"
                     android:scaleType="centerCrop"
-                    app:layout_collapseMode="parallax" />
+                    app:layout_collapseMode="parallax"
+                    app:url="@{viewModel.url}" />
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/spaceDetailToolbar"
                     style="@style/AppTheme.TextAppearance"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
+                    android:title="@{viewModel.titleText}"
                     tools:title="Space name" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -67,6 +69,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:padding="@dimen/_16sdp"
+                    android:text="@{viewModel.descriptionText}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorDarkGray"
                     tools:text="Description" />
@@ -79,6 +82,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:gravity="center"
                     android:padding="@dimen/_5sdp"
+                    android:text="@{viewModel.typeRoomText}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorDarkGray"
                     tools:text="Type - 5 Rooms" />
@@ -100,6 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
+                android:text="@{viewModel.priceText}"
                 android:textColor="@color/colorDarkGray"
                 android:textSize="@dimen/text_big"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -132,7 +137,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
+            android:onClick="@{()-> viewModel.onFavoriteClicked()}"
             android:src="@drawable/ic_favorite_off"
+            app:favorite="@{viewModel.favoriteBoolean}"
             app:layout_anchor="@id/appBarLayout"
             app:layout_anchorGravity="bottom|end" />
 
