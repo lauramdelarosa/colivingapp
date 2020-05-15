@@ -2,9 +2,9 @@ package com.naez.colivingapp
 
 import com.naez.colivingapp.di.dataModule
 import com.naez.data.ResultData
-import com.naez.data.repository.PermissionChecker
 import com.naez.data.source.LocalDataSource
 import com.naez.data.source.LocationDataSource
+import com.naez.data.source.PermissionChecker
 import com.naez.data.source.RemoteDataSource
 import com.naez.domain.Space
 import com.naez.testshared.mockedSpace

@@ -8,9 +8,9 @@ import com.naez.colivingapp.data.database.source.RoomDataSource
 import com.naez.colivingapp.data.server.RetrofitBuild
 import com.naez.colivingapp.data.server.endpoints.SpaceService
 import com.naez.colivingapp.data.server.source.RemoteSpaceDataSource
-import com.naez.colivingapp.ui.spacesDetail.DetailViewModel
-import com.naez.colivingapp.ui.spaces.SpaceViewModel
 import com.naez.colivingapp.ui.spaces.SpaceFragment
+import com.naez.colivingapp.ui.spaces.SpaceViewModel
+import com.naez.colivingapp.ui.spacesDetail.DetailViewModel
 import com.naez.colivingapp.ui.spacesDetail.SpaceDetailFragment
 import com.naez.colivingapp.utils.AndroidPermissionChecker
 import com.naez.data.repository.SpaceRepository
@@ -44,7 +44,7 @@ private val presentationModule = module {
     }
 
     scope(named<SpaceDetailFragment>()) {
-        viewModel { (id: Int) -> DetailViewModel(id, get(), get()) }
+        viewModel { (id: Int) -> DetailViewModel(id, findSpaceById = get(), uiDispatcher = get()) }
         scoped { FindSpaceById(spaceRepository = get()) }
     }
 }
