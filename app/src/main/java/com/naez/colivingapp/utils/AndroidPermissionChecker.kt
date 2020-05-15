@@ -4,7 +4,7 @@ import android.Manifest
 import android.app.Application
 import android.content.pm.PackageManager
 import androidx.core.content.ContextCompat
-import com.naez.data.repository.PermissionChecker
+import com.naez.data.source.PermissionChecker
 
 class AndroidPermissionChecker(private val application: Application) : PermissionChecker {
 

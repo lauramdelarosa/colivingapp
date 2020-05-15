@@ -13,11 +13,10 @@ import com.naez.colivingapp.ui.spaces.SpaceViewModel
 import com.naez.colivingapp.ui.spaces.SpaceFragment
 import com.naez.colivingapp.ui.spacesDetail.SpaceDetailFragment
 import com.naez.colivingapp.utils.AndroidPermissionChecker
-import com.naez.data.repository.PermissionChecker
-import com.naez.data.repository.RegionRepository
 import com.naez.data.repository.SpaceRepository
 import com.naez.data.source.LocalDataSource
 import com.naez.data.source.LocationDataSource
+import com.naez.data.source.PermissionChecker
 import com.naez.data.source.RemoteDataSource
 import com.naez.usecases.FindSpaceById
 import com.naez.usecases.GetSpaces
@@ -51,7 +50,7 @@ private val presentationModule = module {
 }
 
 val dataModule = module {
-    factory { RegionRepository(locationDataSource = get(), permissionChecker = get()) }
+
     factory { SpaceRepository(localDataSource = get(), remoteDataSource = get()) }
 }
 
