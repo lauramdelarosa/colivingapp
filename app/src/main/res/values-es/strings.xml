@@ -2,4 +2,5 @@
 <resources>
     <string name="book">Reservar</string>
     <string name="obligatory_permission">Permiso Obligatorio</string>
+    <string name="location">Ubicación</string>
 </resources>

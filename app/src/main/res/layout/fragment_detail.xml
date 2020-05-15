@@ -87,6 +87,25 @@
                     android:textColor="@color/colorDarkGray"
                     tools:text="Type - 5 Rooms" />
 
+                <TextView
+                    style="@style/AppTheme.TextAppearanceBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:padding="@dimen/_16sdp"
+                    android:text="@string/location"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorDarkGray"
+                    tools:text="Description" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:scaleType="centerCrop"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/map" />
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
